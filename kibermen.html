@@ -1,0 +1,179 @@
+
+
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIBERMEN</title>
+
+    <style>
+        :root {
+            --primary: #6366f1;
+            --dark: #0f172a;
+            --light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: var(--dark);
+            color: var(--light);
+        }
+
+        /* 🔷 HERO SU LOGOTIPU */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero img {
+            max-width: 320px;
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            max-width: 500px;
+            opacity: 0.85;
+        }
+
+        .scroll-hint {
+            margin-top: 3rem;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* Mygtukas nuorodai į puslapį */
+        .visit-button {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 20px 0;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .visit-button:hover {
+            background: #4f46e5;
+        }
+
+        /* 🛒 PRODUKTAS */
+        .shop {
+            min-height: 100vh;
+            display: flex;
+            justify-content:left;
+            align-items: left;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            background: #1e293b;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .product-image {
+            height: 350px;
+            overflow: hidden;
+            border-radius: 0.75rem;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        #paypal-button-container {
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 🔝 VIRŠUS SU LOGOTIPU -->
+<section class="hero">
+    <img src="kiblogotkr-removebg-preview.png" alt="KIBERMEN logotipas">
+    <p>
+        KIBERMEN – edukacinis žaidimas, skirtas kibernetinio saugumo
+        pagrindams, grėsmėms ir sprendimams sužinoti.
+    </p>
+    <div class="scroll-hint">⬇ Slink žemyn, kad pamatytum prekę</div>
+
+   
+<!-- 🛒 PRODUKTO SEKCIJA -->
+<section class="shop">
+    <div class="container">
+        <div class="product-image">
+            <img src="kiblogo.jpg" alt="KIBERMEN žaidimas">
+        </div>
+
+        <div class="product-details">
+            <h1>KIBERMEN</h1>
+             <p>Žaidimas skirtas atskirti ir sužinoti apie kibernetinius pavojus.</p> 
+            Žaidimą sudaro:<br>
+            <p>situacijų kortelės,</p>
+            <p>veikėjai,</p>
+            <p>taisyklės.</p>
+
+            <div class="price">$19.99</div>
+
+            <div id="paypal-button-container"></div>
+        </div>
+    </div>
+</section>
+
+<script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+<script>
+    paypal.Buttons({
+        createOrder: (data, actions) => {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: { value: '19.99' }
+                }]
+            });
+        },
+        onApprove: (data, actions) => {
+            return actions.order.capture().then(details => {
+                alert('Mokėjimas sėkmingas, ' + details.payer.name.given_name + '!');
+            });
+        }
+    }).render('#paypal-button-container');
+</script>
+
+</body>
+</html>
