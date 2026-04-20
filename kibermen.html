@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="lt">
 <head>
@@ -14,9 +13,7 @@
             --light: #f8fafc;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -25,7 +22,6 @@
             color: var(--light);
         }
 
-        /* 🔷 HERO SU LOGOTIPU */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -53,28 +49,11 @@
             font-size: 0.9rem;
         }
 
-        /* Mygtukas nuorodai į puslapį */
-        .visit-button {
-            display: inline-block;
-            padding: 12px 24px;
-            margin: 20px 0;
-            background: var(--primary);
-            color: #fff;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-        .visit-button:hover {
-            background: #4f46e5;
-        }
-
-        /* 🛒 PRODUKTAS */
         .shop {
             min-height: 100vh;
             display: flex;
-            justify-content:left;
-            align-items: left;
+            justify-content: center;
+            align-items: center;
             padding: 2rem;
         }
 
@@ -90,9 +69,7 @@
         }
 
         @media (max-width: 600px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
+            .container { grid-template-columns: 1fr; }
         }
 
         .product-image {
@@ -118,39 +95,33 @@
             margin: 1rem 0;
         }
 
-        #paypal-button-container {
-            margin-top: 2rem;
-        }
+        #paypal-button-container { margin-top: 2rem; }
     </style>
 </head>
 <body>
 
-<!-- 🔝 VIRŠUS SU LOGOTIPU -->
 <section class="hero">
-    <img src="kiblogotkr-removebg-preview.png" alt="KIBERMEN logotipas">
+    <!-- logotipas su tikslu plėtiniu -->
+    <img src="23b9c834-b0a0-4db4-9eee-d43643835251.jpg" alt="KIBERMEN logotipas">
     <p>
         KIBERMEN – edukacinis žaidimas, skirtas kibernetinio saugumo
-        pagrindams, grėsmėms ir sprendimams sužinoti.
+        pagrindams, grėsmėms ir sprendimams suprasti.
     </p>
     <div class="scroll-hint">⬇ Slink žemyn, kad pamatytum prekę</div>
+</section>
 
-   
-<!-- 🛒 PRODUKTO SEKCIJA -->
 <section class="shop">
     <div class="container">
         <div class="product-image">
-            <img src="kiblogo.jpg" alt="KIBERMEN žaidimas">
+            <!-- žaidimo nuotrauka su plėtiniu -->
+            <img src="27cee710-7435-4532-b3b7-62434b808495.jpg" alt="KIBERMEN žaidimas">
         </div>
 
         <div class="product-details">
             <h1>KIBERMEN</h1>
-             <p>Žaidimas skirtas atskirti ir sužinoti apie kibernetinius pavojus.</p> 
-            Žaidimą sudaro:<br>
-            <p>situacijų kortelės,</p>
-            <p>veikėjai,</p>
-            <p>taisyklės.</p>
+            <p>Žaidimas skirtas kibernetinių saugumo įgūdžių lavinimui.</p>
 
-            <div class="price">$19.99</div>
+            <div class="price">19.99€</div>
 
             <div id="paypal-button-container"></div>
         </div>
@@ -162,9 +133,7 @@
     paypal.Buttons({
         createOrder: (data, actions) => {
             return actions.order.create({
-                purchase_units: [{
-                    amount: { value: '19.99' }
-                }]
+                purchase_units: [{ amount: { value: '19.99' } }]
             });
         },
         onApprove: (data, actions) => {
